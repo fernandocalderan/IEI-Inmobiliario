@@ -1,0 +1,26 @@
+# Python cache/build
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Virtual env
+.venv/
+venv/
+
+# Local runtime/temp
+.run/
+*.db
+*.sqlite
+*.sqlite3
+
+# Local env files
+.env
+
+# Generated outputs
+tools/out/
+
+# OS/editor
+.DS_Store
+.vscode/

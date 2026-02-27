@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="../assets/app.css" />
+</head>
+<body data-page="admin-login">
+  <header>
+    <div class="container row" style="justify-content:space-between">
+      <div class="brand">IEI Admin</div>
+      <a class="button secondary" href="../index.html">Sitio</a>
+    </div>
+  </header>
+
+  <main class="container card" style="max-width:480px">
+    <h2>Acceso admin</h2>
+    <div id="admin-error" class="error"></div>
+    <form id="admin-login-form">
+      <label>Contraseña</label>
+      <input type="password" name="password" required />
+      <button class="button" type="submit">Entrar</button>
+    </form>
+  </main>
+
+  <script src="../assets/runtime-config.js"></script>
+  <script src="../assets/admin.js"></script>
+</body>
+</html>

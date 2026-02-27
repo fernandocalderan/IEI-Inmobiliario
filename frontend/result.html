@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Resultado IEI</title>
+  <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body data-page="result">
+  <header>
+    <div class="container row" style="justify-content:space-between">
+      <div class="brand">IEI Inmobiliario</div>
+      <a class="button secondary" href="index.html">Inicio</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="result-error" class="card error" style="display:none"></div>
+
+    <section id="result-card" class="card" style="display:none">
+      <h2>Tu resultado IEI</h2>
+      <div class="kpis" style="margin:14px 0">
+        <div class="kpi">
+          <div class="help">IEI Score</div>
+          <strong id="kpi-score">-</strong>
+        </div>
+        <div class="kpi">
+          <div class="help">Tier</div>
+          <strong id="kpi-tier">-</strong>
+        </div>
+        <div class="kpi">
+          <div class="help">Precio centro</div>
+          <strong id="kpi-center">-</strong>
+        </div>
+      </div>
+
+      <p><strong>Rango estimado:</strong> <span id="range"></span></p>
+      <p><strong>Alineación precio:</strong> <span id="pricing-note"></span></p>
+      <p><strong>Recomendación:</strong> <span id="recommendation"></span></p>
+
+      <button id="call-requested" class="button">Solicitar llamada</button>
+      <p class="help" style="margin-top:10px">No es tasación oficial.</p>
+    </section>
+  </main>
+
+  <script src="assets/runtime-config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

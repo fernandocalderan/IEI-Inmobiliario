@@ -1,0 +1,338 @@
+[
+  {
+    "property": {
+      "zone_key": "castelldefels",
+      "municipality": "Castelldefels",
+      "neighborhood": "Centro",
+      "postal_code": "08860",
+      "property_type": "piso",
+      "m2": 90,
+      "condition": "buen_estado",
+      "year_built": 1998,
+      "has_elevator": true,
+      "has_terrace": true,
+      "terrace_m2": 8,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "compra_otra",
+      "already_listed": "no",
+      "exclusivity": "depende",
+      "expected_price": 415000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "castelldefels",
+      "municipality": "Castelldefels",
+      "neighborhood": "Centro",
+      "postal_code": "08860",
+      "property_type": "piso",
+      "m2": 90,
+      "condition": "buen_estado",
+      "year_built": 1998,
+      "has_elevator": true,
+      "has_terrace": true,
+      "terrace_m2": 8,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "compra_otra",
+      "already_listed": "no",
+      "exclusivity": "depende",
+      "expected_price": 336000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "castelldefels",
+      "municipality": "Castelldefels",
+      "neighborhood": "Centro",
+      "postal_code": "08860",
+      "property_type": "piso",
+      "m2": 90,
+      "condition": "buen_estado",
+      "year_built": 1998,
+      "has_elevator": true,
+      "has_terrace": true,
+      "terrace_m2": 8,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "compra_otra",
+      "already_listed": "no",
+      "exclusivity": "depende",
+      "expected_price": 272000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "gava",
+      "municipality": "Gava",
+      "neighborhood": "Gava Mar",
+      "postal_code": "08850",
+      "property_type": "atico",
+      "m2": 85,
+      "condition": "reformado",
+      "year_built": 2004,
+      "has_elevator": true,
+      "has_terrace": true,
+      "terrace_m2": 18,
+      "has_parking": true,
+      "has_views": true
+    },
+    "owner": {
+      "sale_horizon": "<3m",
+      "motivation": "traslado",
+      "already_listed": "si_con_agencia",
+      "exclusivity": "si",
+      "expected_price": 360000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "gava",
+      "municipality": "Gava",
+      "neighborhood": "Centro",
+      "postal_code": "08850",
+      "property_type": "piso",
+      "m2": 78,
+      "condition": "buen_estado",
+      "year_built": 1991,
+      "has_elevator": false,
+      "has_terrace": false,
+      "terrace_m2": null,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "6-12m",
+      "motivation": "mejora",
+      "already_listed": "si_por_su_cuenta",
+      "exclusivity": "depende",
+      "expected_price": 255000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "gava",
+      "municipality": "Gava",
+      "neighborhood": "Can Tries",
+      "postal_code": "08850",
+      "property_type": "planta_baja",
+      "m2": 74,
+      "condition": "a_reformar_parcial",
+      "year_built": 1980,
+      "has_elevator": false,
+      "has_terrace": true,
+      "terrace_m2": 6,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "finanzas",
+      "already_listed": "no",
+      "exclusivity": "si",
+      "expected_price": 185000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "sitges",
+      "municipality": "Sitges",
+      "neighborhood": "Centre",
+      "postal_code": "08870",
+      "property_type": "chalet",
+      "m2": 160,
+      "condition": "reformado",
+      "year_built": 2007,
+      "has_elevator": false,
+      "has_terrace": true,
+      "terrace_m2": 28,
+      "has_parking": true,
+      "has_views": true
+    },
+    "owner": {
+      "sale_horizon": "<3m",
+      "motivation": "compra_otra",
+      "already_listed": "no",
+      "exclusivity": "si",
+      "expected_price": 910000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "sitges",
+      "municipality": "Sitges",
+      "neighborhood": "Poble Sec",
+      "postal_code": "08870",
+      "property_type": "piso",
+      "m2": 68,
+      "condition": "buen_estado",
+      "year_built": 1995,
+      "has_elevator": true,
+      "has_terrace": false,
+      "terrace_m2": null,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "valorando",
+      "motivation": "curiosidad",
+      "already_listed": "no",
+      "exclusivity": "no",
+      "expected_price": 280000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "sitges",
+      "municipality": "Sitges",
+      "neighborhood": "Vinyet",
+      "postal_code": "08870",
+      "property_type": "atico",
+      "m2": 92,
+      "condition": "reformado",
+      "year_built": 2011,
+      "has_elevator": true,
+      "has_terrace": true,
+      "terrace_m2": 22,
+      "has_parking": true,
+      "has_views": true
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "traslado",
+      "already_listed": "si_con_agencia",
+      "exclusivity": "depende",
+      "expected_price": 610000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "castelldefels",
+      "municipality": "Castelldefels",
+      "neighborhood": "Bellamar",
+      "postal_code": "08860",
+      "property_type": "casa_adosada",
+      "m2": 132,
+      "condition": "buen_estado",
+      "year_built": 2001,
+      "has_elevator": false,
+      "has_terrace": true,
+      "terrace_m2": 16,
+      "has_parking": true,
+      "has_views": true
+    },
+    "owner": {
+      "sale_horizon": "6-12m",
+      "motivation": "herencia",
+      "already_listed": "si_por_su_cuenta",
+      "exclusivity": "depende",
+      "expected_price": 560000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "castelldefels",
+      "municipality": "Castelldefels",
+      "neighborhood": "Can Bou",
+      "postal_code": "08860",
+      "property_type": "planta_baja",
+      "m2": 64,
+      "condition": "a_reformar_integral",
+      "year_built": 1974,
+      "has_elevator": false,
+      "has_terrace": true,
+      "terrace_m2": 5,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "<3m",
+      "motivation": "finanzas",
+      "already_listed": "no",
+      "exclusivity": "si",
+      "expected_price": 200000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "gava",
+      "municipality": "Gava",
+      "neighborhood": "Les Colomeres",
+      "postal_code": "08850",
+      "property_type": "piso",
+      "m2": 88,
+      "condition": "buen_estado",
+      "year_built": 2000,
+      "has_elevator": true,
+      "has_terrace": true,
+      "terrace_m2": 9,
+      "has_parking": true,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "mejora",
+      "already_listed": "si_con_agencia",
+      "exclusivity": "depende",
+      "expected_price": 320000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "sitges",
+      "municipality": "Sitges",
+      "neighborhood": "Aiguadolc",
+      "postal_code": "08870",
+      "property_type": "chalet",
+      "m2": 145,
+      "condition": "buen_estado",
+      "year_built": 1999,
+      "has_elevator": false,
+      "has_terrace": true,
+      "terrace_m2": 30,
+      "has_parking": true,
+      "has_views": true
+    },
+    "owner": {
+      "sale_horizon": "6-12m",
+      "motivation": "inversion",
+      "already_listed": "no",
+      "exclusivity": "depende",
+      "expected_price": 760000
+    }
+  },
+  {
+    "property": {
+      "zone_key": "zona_fantasma",
+      "municipality": "Zona Fantasma",
+      "neighborhood": "N/A",
+      "postal_code": "00000",
+      "property_type": "piso",
+      "m2": 82,
+      "condition": "buen_estado",
+      "year_built": 2002,
+      "has_elevator": true,
+      "has_terrace": false,
+      "terrace_m2": null,
+      "has_parking": false,
+      "has_views": false
+    },
+    "owner": {
+      "sale_horizon": "3-6m",
+      "motivation": "otro",
+      "already_listed": "no",
+      "exclusivity": "depende",
+      "expected_price": 260000
+    }
+  }
+]

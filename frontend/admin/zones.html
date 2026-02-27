@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Zonas</title>
+  <link rel="stylesheet" href="../assets/app.css" />
+</head>
+<body data-page="admin-zones">
+  <header>
+    <div class="container row" style="justify-content:space-between">
+      <div class="brand">IEI Admin - Zonas</div>
+      <div class="nav-links">
+        <a href="leads.html">Leads</a>
+        <a href="zones.html">Zonas</a>
+        <a href="#" id="logout-link">Salir</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container card">
+    <h2>Configuración de zonas</h2>
+    <div id="zones-error" class="error"></div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Zona</th>
+          <th>Municipio</th>
+          <th>€/m²</th>
+          <th>Demanda</th>
+          <th>Activa</th>
+          <th>Guardar</th>
+        </tr>
+      </thead>
+      <tbody id="zones-tbody"></tbody>
+    </table>
+  </main>
+
+  <script src="../assets/runtime-config.js"></script>
+  <script src="../assets/admin.js"></script>
+</body>
+</html>

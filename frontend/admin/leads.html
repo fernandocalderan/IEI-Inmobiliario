@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Leads</title>
+  <link rel="stylesheet" href="../assets/app.css" />
+</head>
+<body data-page="admin-leads">
+  <header>
+    <div class="container row" style="justify-content:space-between">
+      <div class="brand">IEI Admin - Leads</div>
+      <div class="nav-links">
+        <a href="leads.html">Leads</a>
+        <a href="zones.html">Zonas</a>
+        <a href="#" id="logout-link">Salir</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container card">
+    <div class="row" style="justify-content:space-between;align-items:center">
+      <h2 style="margin:0">Leads</h2>
+      <a class="button secondary" id="export-sales" href="#">Export ventas CSV</a>
+    </div>
+    <div class="grid">
+      <div>
+        <label>Tier</label>
+        <select id="filter-tier">
+          <option value="">Todos</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+      <div>
+        <label>Zona</label>
+        <input id="filter-zone" placeholder="castelldefels" />
+      </div>
+      <div>
+        <label>Estado</label>
+        <select id="filter-status">
+          <option value="">Todos</option>
+          <option value="nuevo">nuevo</option>
+          <option value="contactado">contactado</option>
+          <option value="cita">cita</option>
+          <option value="vendido">vendido</option>
+          <option value="descartado">descartado</option>
+        </select>
+      </div>
+      <div style="align-self:end">
+        <button class="button" id="filter-apply">Filtrar</button>
+      </div>
+    </div>
+
+    <table class="table" style="margin-top:16px">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tier</th>
+          <th>Score</th>
+          <th>Zona</th>
+          <th>Horizonte</th>
+          <th>Contacto</th>
+          <th>Estado comercial</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="leads-tbody"></tbody>
+    </table>
+  </main>
+
+  <script src="../assets/runtime-config.js"></script>
+  <script src="../assets/admin.js"></script>
+</body>
+</html>
