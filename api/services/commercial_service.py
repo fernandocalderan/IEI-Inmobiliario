@@ -8,6 +8,7 @@ from uuid import uuid4
 from sqlalchemy.orm import Session
 
 from api.errors import ApiException
+from api.iei_framework import IEI_FRAMEWORK_VERSION, IEI_POWERED_BY
 from api.models import Agency, IEIResultRecord, Lead, LeadReservation, LeadSale, PropertyInput
 from api.settings import get_settings
 
@@ -338,8 +339,13 @@ class CommercialService:
                 "agency_name",
                 "zone_key",
                 "tier",
+                "segment",
+                "pricing_policy",
+                "lead_price_eur",
                 "price_eur",
                 "iei_score",
+                "iei_framework_version",
+                "powered_by",
                 "owner_phone_masked",
                 "owner_email_masked",
             ]
@@ -354,8 +360,13 @@ class CommercialService:
                     agency.name,
                     prop.zone_key,
                     sale.tier,
+                    lead.segment or sale.tier,
+                    lead.pricing_policy or "",
+                    lead.lead_price_eur if lead.lead_price_eur is not None else "",
                     sale.price_eur,
                     iei.iei_score,
+                    ((iei.lead_card_json or {}).get("iei_framework") or {}).get("version") or IEI_FRAMEWORK_VERSION,
+                    (iei.lead_card_json or {}).get("powered_by") or IEI_POWERED_BY,
                     _mask_phone(lead.owner_phone, export_pii=settings.export_pii),
                     _mask_email(lead.owner_email, export_pii=settings.export_pii),
                 ]

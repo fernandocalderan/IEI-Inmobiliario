@@ -41,6 +41,9 @@ class ZoneService:
                     municipality="Castelldefels",
                     base_per_m2=3350,
                     demand_level="alta",
+                    zone_group="baix_llobregat",
+                    pricing_policy="baix_llobregat_premium",
+                    is_premium=True,
                     is_active=True,
                 )
             )
@@ -52,6 +55,9 @@ class ZoneService:
                     municipality="Gava",
                     base_per_m2=3100,
                     demand_level="media",
+                    zone_group="baix_llobregat",
+                    pricing_policy="baix_llobregat_premium",
+                    is_premium=True,
                     is_active=True,
                 )
             )
@@ -63,6 +69,9 @@ class ZoneService:
                     municipality="Sitges",
                     base_per_m2=4100,
                     demand_level="alta",
+                    zone_group="baix_llobregat",
+                    pricing_policy="baix_llobregat_premium",
+                    is_premium=True,
                     is_active=True,
                 )
             )

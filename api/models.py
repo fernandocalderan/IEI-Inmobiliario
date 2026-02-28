@@ -29,6 +29,11 @@ class Lead(Base):
 
     ip_hash = Column(Text)
     phone_hash = Column(Text)
+    pricing_policy = Column(Text)
+    is_premium_zone = Column(Boolean, nullable=False, default=False)
+    lead_price_eur = Column(Float)
+    segment = Column(Text)
+    confidence_bucket = Column(Text)
 
     created_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
@@ -108,6 +113,7 @@ class IEIResultRecord(Base):
 
     applied_factors_json = Column(JSON, nullable=False)
     lead_card_json = Column(JSON, nullable=False)
+    pricing_json = Column(JSON)
 
     engine_version = Column(Text, nullable=False)
 
@@ -128,6 +134,11 @@ class Zone(Base):
     condition_factor_overrides = Column(JSON)
     extras_add_overrides = Column(JSON)
     extras_cap_override = Column(Float)
+
+    zone_group = Column(Text)
+    pricing_policy = Column(Text)
+    pricing_json = Column(JSON)
+    is_premium = Column(Boolean, nullable=False, default=False)
 
     is_active = Column(Boolean, nullable=False, default=True)
 

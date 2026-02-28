@@ -26,6 +26,10 @@ def list_zones(_: None = Depends(require_admin), db: Session = Depends(get_db)):
                 "condition_factor_overrides": zone.condition_factor_overrides,
                 "extras_add_overrides": zone.extras_add_overrides,
                 "extras_cap_override": zone.extras_cap_override,
+                "zone_group": zone.zone_group,
+                "pricing_policy": zone.pricing_policy,
+                "pricing_json": zone.pricing_json,
+                "is_premium": zone.is_premium,
                 "is_active": zone.is_active,
             }
         )

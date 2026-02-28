@@ -7,8 +7,11 @@ import iei_engine as engine_module
 from sqlalchemy.orm import Session
 
 from api.errors import ApiException
+from api.iei_framework import IEI_POWERED_BY, iei_framework_metadata
 from api.schemas import LeadInputSchema
+from api.services.pricing_policy import PricingContext, PricingPolicyService
 from api.services.zone_service import ZoneService
+from api.settings import get_settings
 from api.utils.validation import normalize_zone_key
 
 
@@ -95,4 +98,35 @@ def score_lead(db: Session, payload: LeadInputSchema) -> tuple[engine_module.Lea
 
 def build_lead_card(lead: engine_module.LeadInput, result: engine_module.IEIResult) -> dict[str, Any]:
     card = engine_module.lead_card(lead, result)
-    return _serialize_lead_card(card)
+    serialized = _serialize_lead_card(card)
+    settings = get_settings()
+    if settings.iei_framework_enabled:
+        serialized["iei_framework"] = iei_framework_metadata()
+        serialized["powered_by"] = IEI_POWERED_BY
+    return serialized
+
+
+def compute_pricing_from_result(
+    db: Session,
+    payload: LeadInputSchema,
+    result: dict[str, Any],
+    *,
+    confidence_bucket: str | None = None,
+) -> dict[str, Any]:
+    context = PricingContext(
+        tier=result["tier"],
+        zone_key=payload.property.zone_key,
+        sale_horizon=payload.owner.sale_horizon,
+        already_listed=payload.owner.already_listed,
+        gap_percent=result.get("pricing_alignment", {}).get("gap_percent"),
+        demand_level=result.get("price_estimate", {}).get("demand_level", "media"),
+        confidence_bucket=confidence_bucket,
+    )
+    return PricingPolicyService.compute_pricing(db, context)
+
+
+def get_framework_metadata() -> dict[str, Any] | None:
+    settings = get_settings()
+    if not settings.iei_framework_enabled:
+        return None
+    return iei_framework_metadata()

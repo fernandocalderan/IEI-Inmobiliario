@@ -87,6 +87,29 @@ else:
 PY
 }
 
+json_find_zone_id() {
+  local file="$1"
+  local target_zone="$2"
+  python3 - "$file" "$target_zone" <<'PY'
+import json
+import sys
+
+fp, target = sys.argv[1], sys.argv[2]
+try:
+    data = json.load(open(fp, "r", encoding="utf-8"))
+except Exception:
+    print("")
+    raise SystemExit(0)
+
+for item in data.get("items", []):
+    if str(item.get("zone_key", "")).lower().strip() == target.lower().strip():
+        print(item.get("id", ""))
+        raise SystemExit(0)
+
+print("")
+PY
+}
+
 gen_phone() {
   local suffix
   suffix="$(date +%s%N | rev | cut -c1-8 | rev)"
@@ -250,6 +273,44 @@ if [ "$AGENCY_1_ID" = "$AGENCY_2_ID" ]; then
   fail "AGENCY_1_ID y AGENCY_2_ID deben ser distintos."
 fi
 
+log "2.1) Update zone pricing (castelldefels premium policy)"
+zones_body="$TMP_DIR/zones.json"
+zones_status=$(curl -sS -b "$COOKIE_JAR" -o "$zones_body" -w "%{http_code}" "${API_BASE}/api/admin/zones")
+assert_status "200" "$zones_status" "list zones" "$zones_body"
+zone_id="$(json_find_zone_id "$zones_body" "castelldefels")"
+if [ -z "$zone_id" ]; then
+  fail "No se encontró zone_id para castelldefels"
+fi
+
+zone_patch_body="$TMP_DIR/zone_patch.json"
+cat > "$zone_patch_body" <<'JSON'
+{
+  "zone_group": "baix_llobregat",
+  "pricing_policy": "baix_llobregat_premium",
+  "pricing_json": {
+    "A": 90,
+    "B": 55,
+    "C": 25,
+    "D": 0,
+    "A_PLUS": 150,
+    "confidence": {
+      "high": 1.2,
+      "medium": 1.0,
+      "low": 0.8,
+      "unreliable": 0.0
+    }
+  },
+  "is_premium": true
+}
+JSON
+
+zone_patch_resp="$TMP_DIR/zone_patch_resp.json"
+zone_patch_status=$(curl -sS -b "$COOKIE_JAR" -o "$zone_patch_resp" -w "%{http_code}" -X PATCH \
+  "${API_BASE}/api/admin/zones/${zone_id}" \
+  -H "Content-Type: application/json" \
+  --data-binary "@${zone_patch_body}")
+assert_status "200" "$zone_patch_status" "patch zone pricing" "$zone_patch_resp"
+
 log "3) Crear lead y buscar Tier A (max 3 intentos)"
 SELECTED_LEAD_ID=""
 SELECTED_PHONE=""
@@ -277,6 +338,16 @@ for attempt in 1 2 3; do
   adjusted_price="$(json_get "$score_body" "price_estimate.adjusted_price")"
   if [ -z "$adjusted_price" ]; then
     fail "No se obtuvo adjusted_price en score attempt ${attempt}"
+  fi
+  score_pricing_price="$(json_get "$score_body" "pricing.lead_price_eur")"
+  score_pricing_segment="$(json_get "$score_body" "pricing.segment")"
+  if [ -z "$score_pricing_price" ] || [ -z "$score_pricing_segment" ]; then
+    fail "Score no devolvió pricing.lead_price_eur/segment en intento ${attempt}"
+  fi
+  framework_name="$(json_get "$score_body" "iei_framework.name")"
+  framework_version="$(json_get "$score_body" "iei_framework.version")"
+  if [ "$framework_name" != "IEI™" ] || [ -z "$framework_version" ]; then
+    fail "Score no devolvió metadata iei_framework válida en intento ${attempt}"
   fi
 
   expected_price="$(python3 - "$adjusted_price" <<'PY'
@@ -314,6 +385,11 @@ PY
 
   if [ -z "$lead_id" ] || [ -z "$tier" ]; then
     fail "Respuesta create lead sin lead_id/tier en intento ${attempt}"
+  fi
+  lead_framework_name="$(json_get "$lead_body" "iei_framework.name")"
+  lead_card_framework_version="$(json_get "$lead_body" "lead_card.iei_framework.version")"
+  if [ "$lead_framework_name" != "IEI™" ] || [ -z "$lead_card_framework_version" ]; then
+    fail "Lead create sin iei_framework en response/lead_card en intento ${attempt}"
   fi
 
   log "attempt ${attempt}: lead_id=${lead_id} tier=${tier}"
@@ -399,6 +475,9 @@ if [ "$TIER_A_OBTAINED" = "1" ]; then
   if ! grep -qi "content-type: text/csv" "$export_headers"; then
     fail "export no devolvió content-type text/csv"
   fi
+  if ! head -n 1 "$export_body" | grep -q "iei_framework_version,powered_by"; then
+    fail "export CSV no incluye columnas iei_framework_version,powered_by"
+  fi
   if ! grep -q "$SELECTED_LEAD_ID" "$export_body"; then
     fail "export CSV no contiene lead_id vendido"
   fi
@@ -462,5 +541,6 @@ if [ "$TIER_A_OBTAINED" = "1" ]; then
 else
   log "WARN: reserve/sell/export skipped because Tier A was not obtained"
 fi
+log "OK: zone pricing update"
 
 log "OK"

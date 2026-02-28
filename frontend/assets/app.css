@@ -157,6 +157,11 @@ input, select, textarea {
   font-weight: 600;
 }
 
+.page-footer {
+  margin: 18px auto 26px;
+  padding: 0 2px;
+}
+
 @media (max-width: 768px) {
   .grid { grid-template-columns: 1fr; }
   .kpis { grid-template-columns: 1fr; }

@@ -29,6 +29,8 @@ MIGRATION_SQL_001="db/migrations/001_init.sql"
 SEED_SQL_001="db/seed/001_zones.sql"
 MIGRATION_SQL_002="db/migrations/002_commercial_ops.sql"
 SEED_SQL_002="db/seed/002_agencies_seed.sql"
+MIGRATION_SQL_003="db/migrations/003_premium_pricing_fields.sql"
+SEED_SQL_003="db/seed/003_premium_zones.sql"
 
 if [ ! -f "$MIGRATION_SQL_001" ] || [ ! -f "$SEED_SQL_001" ]; then
   echo "[db] ERROR: faltan SQL requeridos ($MIGRATION_SQL_001 / $SEED_SQL_001)"
@@ -43,12 +45,22 @@ if [ -f "$MIGRATION_SQL_002" ]; then
   psql "$PSQL_URL" -v ON_ERROR_STOP=1 -f "$MIGRATION_SQL_002"
 fi
 
+if [ -f "$MIGRATION_SQL_003" ]; then
+  echo "[db] aplicando migración: $MIGRATION_SQL_003"
+  psql "$PSQL_URL" -v ON_ERROR_STOP=1 -f "$MIGRATION_SQL_003"
+fi
+
 echo "[db] aplicando seed: $SEED_SQL_001"
 psql "$PSQL_URL" -v ON_ERROR_STOP=1 -f "$SEED_SQL_001"
 
 if [ -f "$SEED_SQL_002" ]; then
   echo "[db] aplicando seed: $SEED_SQL_002"
   psql "$PSQL_URL" -v ON_ERROR_STOP=1 -f "$SEED_SQL_002"
+fi
+
+if [ -f "$SEED_SQL_003" ]; then
+  echo "[db] aplicando seed: $SEED_SQL_003"
+  psql "$PSQL_URL" -v ON_ERROR_STOP=1 -f "$SEED_SQL_003"
 fi
 
 echo "[db] ok: migración + seed aplicados"

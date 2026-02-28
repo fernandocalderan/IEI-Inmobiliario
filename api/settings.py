@@ -33,6 +33,7 @@ class Settings:
 
     rate_limit_per_minute: int
     rate_limit_leads_per_minute: int
+    iei_framework_enabled: bool
 
 
 def _split_csv(value: str) -> list[str]:
@@ -59,4 +60,5 @@ def get_settings() -> Settings:
         export_pii=_as_bool(os.getenv("EXPORT_PII", "false"), default=False),
         rate_limit_per_minute=int(os.getenv("RATE_LIMIT_PER_MINUTE", "120")),
         rate_limit_leads_per_minute=int(os.getenv("RATE_LIMIT_LEADS_PER_MINUTE", "20")),
+        iei_framework_enabled=_as_bool(os.getenv("IEI_FRAMEWORK_ENABLED", "true"), default=True),
     )

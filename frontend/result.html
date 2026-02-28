@@ -9,7 +9,7 @@
 <body data-page="result">
   <header>
     <div class="container row" style="justify-content:space-between">
-      <div class="brand">IEI Inmobiliario</div>
+      <div class="brand">Informe de Ventabilidad</div>
       <a class="button secondary" href="index.html">Inicio</a>
     </div>
   </header>
@@ -21,7 +21,12 @@
       <h2>Tu resultado IEI</h2>
       <div class="kpis" style="margin:14px 0">
         <div class="kpi">
-          <div class="help">IEI Score</div>
+          <div
+            class="help"
+            title="IEI™ es el Índice de Evaluación Integral: un sistema determinista de evaluación."
+          >
+            IEI Score
+          </div>
           <strong id="kpi-score">-</strong>
         </div>
         <div class="kpi">
@@ -36,12 +41,18 @@
 
       <p><strong>Rango estimado:</strong> <span id="range"></span></p>
       <p><strong>Alineación precio:</strong> <span id="pricing-note"></span></p>
+      <p id="ventability-high" style="display:none"><strong>Ventabilidad alta:</strong> perfil prioritario para comercialización.</p>
       <p><strong>Recomendación:</strong> <span id="recommendation"></span></p>
 
       <button id="call-requested" class="button">Solicitar llamada</button>
       <p class="help" style="margin-top:10px">No es tasación oficial.</p>
     </section>
   </main>
+
+  <footer class="container page-footer">
+    <p class="help">Powered by IEI™ — Índice de Evaluación Integral</p>
+    <p class="help">Modelo determinista basado en reglas (no tasación oficial).</p>
+  </footer>
 
   <script src="assets/runtime-config.js"></script>
   <script src="assets/app.js"></script>

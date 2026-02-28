@@ -212,5 +212,5 @@ def test_sales_export_csv_works():
     assert export_resp.status_code == 200
     assert "text/csv" in export_resp.headers.get("content-type", "")
     body = export_resp.text
-    assert "sold_at,lead_id,agency_id,agency_name,zone_key,tier,price_eur,iei_score,owner_phone_masked,owner_email_masked" in body
+    assert "sold_at,lead_id,agency_id,agency_name,zone_key,tier,segment,pricing_policy,lead_price_eur,price_eur,iei_score,iei_framework_version,powered_by,owner_phone_masked,owner_email_masked" in body
     assert lead_id in body

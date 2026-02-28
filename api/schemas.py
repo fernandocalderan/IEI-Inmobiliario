@@ -24,6 +24,8 @@ ListingStatusLiteral = Literal["no", "si_con_agencia", "si_por_su_cuenta"]
 ExclusivityLiteral = Literal["si", "depende", "no"]
 DemandLevelLiteral = Literal["alta", "media", "baja"]
 TierLiteral = Literal["A", "B", "C", "D"]
+SegmentLiteral = Literal["A_PLUS", "A", "B", "C", "D"]
+ConfidenceBucketLiteral = Literal["high", "medium", "low", "unreliable"]
 LeadStatusLiteral = Literal["nuevo", "contactado", "cita", "vendido", "descartado"]
 CommercialStateLiteral = Literal["available", "reserved", "sold"]
 
@@ -77,6 +79,13 @@ class PricingAlignmentSchema(BaseModel):
     note: str
 
 
+class IEIFrameworkSchema(BaseModel):
+    name: str
+    full_name: str
+    tagline: str
+    version: str
+
+
 class IEIResultSchema(BaseModel):
     iei_score: int
     tier: TierLiteral
@@ -84,6 +93,8 @@ class IEIResultSchema(BaseModel):
     price_estimate: PriceEstimateSchema
     pricing_alignment: PricingAlignmentSchema
     recommendation: str
+    pricing: Optional[dict[str, Any]] = None
+    iei_framework: Optional[IEIFrameworkSchema] = None
 
 
 class LeadCreateInfoSchema(BaseModel):
@@ -113,6 +124,8 @@ class LeadCreateResponseSchema(BaseModel):
     status: LeadStatusLiteral
     result: dict[str, Any]
     lead_card: dict[str, Any]
+    pricing: Optional[dict[str, Any]] = None
+    iei_framework: Optional[IEIFrameworkSchema] = None
     created_at: datetime
 
 
@@ -136,6 +149,11 @@ class AdminLeadItemSchema(BaseModel):
     reserved_until: Optional[datetime] = None
     reserved_to_agency_id: Optional[str] = None
     sold_at: Optional[datetime] = None
+    lead_price_eur: Optional[float] = None
+    segment: Optional[SegmentLiteral] = None
+    pricing_policy: Optional[str] = None
+    is_premium_zone: bool = False
+    confidence_bucket: Optional[ConfidenceBucketLiteral] = None
 
 
 class AdminLeadListResponseSchema(BaseModel):
@@ -213,6 +231,10 @@ class ZoneItemSchema(BaseModel):
     condition_factor_overrides: Optional[dict[str, float]] = None
     extras_add_overrides: Optional[dict[str, float]] = None
     extras_cap_override: Optional[float] = None
+    zone_group: Optional[str] = None
+    pricing_policy: Optional[str] = None
+    pricing_json: Optional[dict[str, Any]] = None
+    is_premium: bool = False
     is_active: bool
 
 
@@ -227,6 +249,10 @@ class ZonePatchRequestSchema(BaseModel):
     condition_factor_overrides: Optional[dict[str, float]] = None
     extras_add_overrides: Optional[dict[str, float]] = None
     extras_cap_override: Optional[float] = None
+    zone_group: Optional[str] = None
+    pricing_policy: Optional[str] = None
+    pricing_json: Optional[dict[str, Any]] = None
+    is_premium: Optional[bool] = None
     is_active: Optional[bool] = None
 
 

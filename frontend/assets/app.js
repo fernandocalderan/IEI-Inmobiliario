@@ -142,6 +142,8 @@
       motivation: leadInput.owner.motivation,
       expected_price_present: leadInput.owner.expected_price != null,
       duplicate: leadData.duplicate === true,
+      is_premium_zone: leadData?.pricing?.policy === "baix_llobregat_premium",
+      iei_framework_version: scoreData?.iei_framework?.version || null,
     });
 
     window.location.href = "result.html";
@@ -223,12 +225,20 @@
     document.getElementById("range").textContent = `${money(data.price_estimate.range_low)} - ${money(data.price_estimate.range_high)}`;
     document.getElementById("pricing-note").textContent = data.pricing_alignment.note;
     document.getElementById("recommendation").textContent = data.recommendation;
+    const segment = data?.pricing?.segment || data.tier;
+    const isHighVentability = data.tier === "A" || segment === "A_PLUS";
+    const ventability = document.getElementById("ventability-high");
+    if (ventability) {
+      ventability.style.display = isHighVentability ? "block" : "none";
+    }
 
     trackEvent("view_result", {
       iei_score: data.iei_score,
       tier: data.tier,
+      segment,
       gap_percent: data.pricing_alignment.gap_percent,
       zone_key: data?.zone?.zone_key || null,
+      iei_framework_version: data?.iei_framework?.version || null,
     });
 
     const btn = document.getElementById("call-requested");

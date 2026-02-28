@@ -6,10 +6,11 @@ from uuid import uuid4
 from sqlalchemy.orm import Session
 
 from api.errors import ApiException
+from api.iei_framework import IEI_POWERED_BY
 from api.models import IEIResultRecord, Lead, OwnerSignal, PropertyInput
 from api.schemas import LeadCreateRequestSchema
 from api.services.commercial_service import CommercialService
-from api.services.iei_service import build_lead_card, score_lead
+from api.services.iei_service import build_lead_card, compute_pricing_from_result, get_framework_metadata, score_lead
 from api.settings import get_settings
 from api.utils.ip_hash import hash_phone
 
@@ -52,6 +53,21 @@ class LeadService:
 
         lead_input, raw_result, result = score_lead(db, payload.input)
         lead_card = build_lead_card(lead_input, raw_result)
+        pricing = compute_pricing_from_result(db, payload.input, result, confidence_bucket=None)
+        framework = get_framework_metadata()
+        pricing_public = {
+            "lead_price_eur": pricing["lead_price_eur"],
+            "segment": pricing["segment"],
+            "policy": pricing["policy"],
+            "confidence_bucket": pricing["confidence_bucket"],
+        }
+        result["pricing"] = pricing_public
+        if framework:
+            result["iei_framework"] = framework
+        lead_card["pricing_lead"] = pricing_public
+        if framework:
+            lead_card["iei_framework"] = framework
+            lead_card["powered_by"] = IEI_POWERED_BY
 
         lead_id = str(uuid4())
 
@@ -72,6 +88,11 @@ class LeadService:
             utm_content=payload.lead.utm_content,
             ip_hash=ip_hash,
             phone_hash=phone_hash,
+            pricing_policy=pricing["policy"],
+            is_premium_zone=bool(pricing["is_premium_zone"]),
+            lead_price_eur=pricing["lead_price_eur"],
+            segment=pricing["segment"],
+            confidence_bucket=pricing["confidence_bucket"],
             created_at=now,
             updated_at=now,
         )
@@ -130,6 +151,17 @@ class LeadService:
             recommendation=result["recommendation"],
             applied_factors_json=price.get("applied_factors", {}),
             lead_card_json=lead_card,
+            pricing_json={
+                "policy": pricing["policy"],
+                "policy_version": pricing["policy_version"],
+                "segment": pricing["segment"],
+                "lead_price_eur": pricing["lead_price_eur"],
+                "confidence_bucket": pricing["confidence_bucket"],
+                "is_premium_zone": pricing["is_premium_zone"],
+                "policy_snapshot": pricing["policy_json"],
+                "iei_framework_version": framework["version"] if framework else None,
+                "powered_by": IEI_POWERED_BY if framework else None,
+            },
             engine_version=settings.engine_version,
             created_at=now,
         )
@@ -144,11 +176,25 @@ class LeadService:
             db.rollback()
             raise
 
+        response_lead_card = {
+            "iei_score": result["iei_score"],
+            "tier": result["tier"],
+            "lead_price_eur": pricing["lead_price_eur"],
+            "segment": pricing["segment"],
+            "policy": pricing["policy"],
+            "confidence_bucket": pricing["confidence_bucket"],
+        }
+        if framework:
+            response_lead_card["iei_framework"] = framework
+            response_lead_card["powered_by"] = IEI_POWERED_BY
+
         return {
             "lead_id": lead_id,
             "status": "nuevo",
             "result": {"iei_score": result["iei_score"], "tier": result["tier"]},
-            "lead_card": {"iei_score": result["iei_score"], "tier": result["tier"]},
+            "lead_card": response_lead_card,
+            "pricing": pricing_public,
+            "iei_framework": framework,
             "created_at": now,
         }
 
@@ -211,6 +257,11 @@ class LeadService:
                     "reserved_until": commercial["reserved_until"],
                     "reserved_to_agency_id": commercial["reserved_to_agency_id"],
                     "sold_at": commercial["sold_at"],
+                    "lead_price_eur": lead.lead_price_eur,
+                    "segment": lead.segment,
+                    "pricing_policy": lead.pricing_policy,
+                    "is_premium_zone": bool(lead.is_premium_zone),
+                    "confidence_bucket": lead.confidence_bucket,
                 }
             )
 
@@ -256,6 +307,15 @@ class LeadService:
             "reserved_until": commercial["reserved_until"],
             "reserved_to_agency_id": commercial["reserved_to_agency_id"],
             "sold_at": commercial["sold_at"],
+            "pricing": {
+                "lead_price_eur": lead.lead_price_eur,
+                "segment": lead.segment,
+                "policy": lead.pricing_policy,
+                "confidence_bucket": lead.confidence_bucket,
+                "is_premium_zone": bool(lead.is_premium_zone),
+            },
+            "iei_framework": (result.lead_card_json or {}).get("iei_framework"),
+            "powered_by": (result.lead_card_json or {}).get("powered_by"),
         }
 
     @staticmethod
