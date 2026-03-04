@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin Login</title>
-  <link rel="stylesheet" href="../assets/app.css" />
+  <title>Vendabilidad™ | Admin Login</title>
+  <link rel="stylesheet" href="../assets/vendabilidad.css" />
 </head>
 <body data-page="admin-login">
-  <header>
-    <div class="container row" style="justify-content:space-between">
-      <div class="brand">IEI Admin</div>
-      <a class="button secondary" href="../index.html">Sitio</a>
+  <header class="container">
+    <div class="row" style="justify-content:space-between">
+      <div class="brand-wrap">
+        <div class="brand">VENDABILIDAD<span class="dot">.</span></div>
+        <div class="brand-sub">Panel administración IEI™</div>
+      </div>
+      <a class="button button-ghost" href="../index.html">Sitio</a>
     </div>
   </header>
 
-  <main class="container card" style="max-width:480px">
+  <main class="container panel" style="max-width:480px">
     <h2>Acceso admin</h2>
     <div id="admin-error" class="error"></div>
     <form id="admin-login-form">
       <label>Contraseña</label>
       <input type="password" name="password" required />
-      <button class="button" type="submit">Entrar</button>
+      <button class="button button-premium" type="submit">Entrar</button>
     </form>
   </main>
 

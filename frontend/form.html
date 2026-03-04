@@ -3,19 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Formulario IEI</title>
-  <link rel="stylesheet" href="assets/app.css" />
+  <title>Vendabilidad™ | Formulario</title>
+  <link rel="stylesheet" href="assets/vendabilidad.css" />
 </head>
 <body data-page="form">
-  <header>
-    <div class="container row" style="justify-content:space-between">
-      <div class="brand">Informe de Ventabilidad</div>
-      <a class="button secondary" href="index.html">Volver</a>
+  <header class="container">
+    <div class="row" style="justify-content:space-between">
+      <div class="brand-wrap">
+        <div class="brand">VENDABILIDAD<span class="dot">.</span></div>
+        <div class="brand-sub">Informe de Vendabilidad™</div>
+      </div>
+      <a class="button button-ghost" href="index.html">Volver</a>
     </div>
   </header>
 
-  <main class="container card">
-    <h2>Informe de Ventabilidad</h2>
+  <main class="container panel">
+    <h2>Informe de Vendabilidad</h2>
     <p class="help">Completa el formulario por pasos (2-4 minutos).</p>
 
     <div id="form-error" class="error"></div>
@@ -166,18 +169,18 @@
       </section>
 
       <div class="row" style="margin-top:16px; justify-content:space-between">
-        <button class="button secondary" type="button" id="prev-step">Anterior</button>
-        <div>
-          <button class="button" type="button" id="next-step">Siguiente</button>
-          <button class="button" type="submit" id="submit-form" style="display:none">Enviar</button>
+        <button class="button button-ghost" type="button" id="prev-step">Anterior</button>
+        <div class="row" style="gap:10px">
+          <button class="button button-premium" type="button" id="next-step">Siguiente</button>
+          <button class="button button-premium" type="submit" id="submit-form" style="display:none">Enviar</button>
         </div>
       </div>
     </form>
   </main>
 
-  <footer class="container page-footer">
-    <p class="help">Powered by IEI™ — Índice de Evaluación Integral</p>
-    <p class="help">Modelo determinista basado en reglas (no tasación oficial).</p>
+  <footer class="container footer">
+    <p class="powered">Powered by IEI™ — Índice de Evaluación Integral</p>
+    <p class="small">Modelo determinista basado en reglas (no tasación oficial).</p>
   </footer>
 
   <script src="assets/runtime-config.js"></script>

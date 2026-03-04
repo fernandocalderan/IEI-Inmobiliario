@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vendabilidad™ — Informe de Vendabilidad (Powered by IEI™)</title>
+  <meta name="description" content="Antes de vender, entiende tu posición real en el mercado. Informe orientativo de vendabilidad basado en el IEI™ — Índice de Evaluación Integral." />
+
+  <style>
+    :root{
+      --bg:#F8FAFC;
+      --card:#FFFFFF;
+      --text:#0F172A;
+      --muted:#334155;
+      --border:#E2E8F0;
+      --cta:#065F46;
+      --cta2:#0B7A57;
+      --hero:#0F172A;
+      --heroText:#F8FAFC;
+      --shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 1040px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.35;
+    }
+    a{color:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:28px 18px}
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding:28px 0 68px 0;
+    }
+    .brand-wrap{display:flex; flex-direction:column; gap:4px}
+    .brand{
+      font-weight:800;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      font-size:40px;
+    }
+    .brand .dot{color:var(--cta)}
+    .brand-sub{font-size:13px; color:var(--muted)}
+    .nav a{
+      font-size:13px; color:var(--muted);
+      text-decoration:none;
+      border-bottom:1px solid transparent;
+      padding-bottom:2px;
+    }
+    .nav a:hover{border-bottom-color:var(--border)}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    .hero{
+      background:var(--hero);
+      color:var(--heroText);
+      border:1px solid rgba(248,250,252,0.12);
+      padding:34px 26px;
+    }
+    .hero h1{
+      margin:0 0 10px 0;
+      font-size:36px;
+      line-height:1.08;
+      letter-spacing:-0.02em;
+    }
+    .lead{
+      margin:0 0 18px 0;
+      color:rgba(248,250,252,0.88);
+      font-size:16px;
+      max-width:70ch;
+    }
+    .hero-points{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px 14px;
+      margin:16px 0 22px 0;
+      padding:0;
+    }
+    .hero-points div{
+      background: rgba(248,250,252,0.06);
+      border:1px solid rgba(248,250,252,0.10);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:13px;
+      color:rgba(248,250,252,0.92);
+    }
+    .cta-row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .button{
+      display:inline-flex; align-items:center; justify-content:center;
+      text-decoration:none;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition: transform .08s ease, filter .12s ease;
+      user-select:none;
+    }
+    .button:active{transform: translateY(1px)}
+    .button-premium{
+      background:var(--cta);
+      color:#fff;
+    }
+    .button-premium:hover{filter:brightness(1.03)}
+    .button-ghost{
+      background:transparent;
+      color:rgba(248,250,252,0.92);
+      border-color: rgba(248,250,252,0.18);
+    }
+    .micro-note{
+      margin:10px 0 0 0;
+      font-size:12px;
+      color:rgba(248,250,252,0.72);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, minmax(0,1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+    .span-12{grid-column: span 12}
+    .span-6{grid-column: span 6}
+    .span-4{grid-column: span 4}
+
+    h2{margin:0 0 10px 0; font-size:20px; letter-spacing:-0.01em}
+    h3{margin:0 0 10px 0; font-size:16px}
+    p{margin:0 0 10px 0; color:var(--muted)}
+    .muted{color:var(--muted)}
+    .small{font-size:12px; color:var(--muted)}
+
+    .dims{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:12px; margin-top:12px}
+    .dim{border:1px solid var(--border); border-radius:16px; padding:14px}
+    .dim strong{display:block; margin-bottom:6px; color:var(--text)}
+    .dim p{margin:0; font-size:13px}
+
+    .steps{margin:0; padding-left:18px}
+    .steps li{margin:10px 0}
+    .steps li p{margin:6px 0 0 0; font-size:13px}
+
+    .list{margin:0; padding-left:18px}
+    .list li{margin:8px 0; color:var(--muted)}
+    .faq details{
+      border-top:1px solid var(--border);
+      padding:12px 0;
+    }
+    .faq details:first-child{border-top:none}
+    .faq summary{
+      cursor:pointer;
+      font-weight:700;
+      color:var(--text);
+    }
+    .footer{
+      text-align:center;
+      padding:22px 10px 10px 10px;
+      color:var(--muted);
+    }
+    .footer strong{color:var(--text)}
+    .powered{font-size:12px; color:var(--muted)}
+
+    @media (max-width: 860px){
+      .hero h1{font-size:30px}
+      .hero-points{grid-template-columns: 1fr}
+      .dims{grid-template-columns: 1fr}
+      .span-6,.span-4{grid-column: span 12}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-wrap">
+        <div class="brand">VENDABILIDAD<span class="dot">.</span></div>
+      </div>
+      <nav class="nav">
+      </nav>
+    </header>
+
+    <section class="card hero">
+      <h1>Antes de vender, entiende tu posición real en el mercado.</h1>
+      <p class="lead">
+        Recibe un Informe de Vendabilidad™ basado en el IEI™ — Índice de Evaluación Integral.
+        Analiza precio, demanda e intención de venta con un modelo estructurado.
+      </p>
+
+      <div class="hero-points">
+        <div>✔ Rango conservador estimado</div>
+        <div>✔ Lectura de demanda por zona</div>
+        <div>✔ Alineación de precio (gap %)</div>
+        <div>✔ Recomendación estratégica de salida</div>
+      </div>
+
+      <div class="cta-row">
+        <a id="cta-start" class="button button-premium" href="form.html">Obtener mi Informe IEI™</a>
+        <a class="button button-ghost" href="#como-funciona">Cómo funciona</a>
+      </div>
+
+      <p class="micro-note">
+        Informe orientativo basado en modelo determinista. No es tasación oficial.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section id="que-es-iei" class="card span-12">
+        <h2>¿Qué es el IEI™?</h2>
+        <p>
+          El IEI™ (Índice de Evaluación Integral) es un framework determinista que clasifica la vendabilidad
+          en una escala de 0 a 100. Está basado en reglas explícitas y ponderaciones versionadas.
+        </p>
+
+        <div class="dims">
+          <div class="dim">
+            <strong>Intención (0–40)</strong>
+            <p>Momento y motivación real del propietario para vender.</p>
+          </div>
+          <div class="dim">
+            <strong>Precio (0–30)</strong>
+            <p>Alineación entre expectativa de precio y mercado actual.</p>
+          </div>
+          <div class="dim">
+            <strong>Mercado (0–30)</strong>
+            <p>Liquidez estructural según zona, tipología y condición.</p>
+          </div>
+        </div>
+
+        <p class="small" style="margin-top:12px">
+          El IEI™ no sustituye una tasación homologada. Es evaluación comercial estructurada.
+        </p>
+      </section>
+
+      <section id="como-funciona" class="card span-6">
+        <h2>Cómo funciona</h2>
+        <ol class="steps">
+          <li>
+            <strong>Datos del inmueble</strong>
+            <p>Zona, tipología, m², estado y extras.</p>
+          </li>
+          <li>
+            <strong>Momento de venta</strong>
+            <p>Horizonte, motivación y señales de intención.</p>
+          </li>
+          <li>
+            <strong>Informe y recomendación</strong>
+            <p>Rango orientativo + demanda estimada + recomendación de salida.</p>
+          </li>
+        </ol>
+        <p class="small">Tiempo estimado: 2–4 minutos.</p>
+        <a class="button button-premium" href="form.html" style="margin-top:8px">Empezar informe</a>
+      </section>
+
+      <section class="card span-6">
+        <h2>Transparencia del modelo</h2>
+        <ul class="list">
+          <li>Modelo determinista basado en reglas explícitas.</li>
+          <li>Resultados desglosables (precio, intención, mercado).</li>
+          <li>No es tasación oficial ni valoración hipotecaria.</li>
+          <li>Enfoque conservador para evitar falsas expectativas.</li>
+        </ul>
+
+        <h3 style="margin-top:14px">Privacidad y contacto</h3>
+        <p class="small">
+          Tus datos se usan para entregar el informe y, si lo autorizas, para ponerte en contacto con una inmobiliaria colaboradora.
+          Consulta la <a href="/privacy.html">política de privacidad</a>.
+        </p>
+      </section>
+
+      <section class="card span-12 faq">
+        <h2>Preguntas frecuentes</h2>
+
+        <details>
+          <summary>¿Es una tasación oficial?</summary>
+          <p class="small" style="margin-top:8px">No. Es un informe orientativo de vendabilidad basado en reglas y datos de zona. No sustituye tasación homologada.</p>
+        </details>
+
+        <details>
+          <summary>¿Cuánto tarda?</summary>
+          <p class="small" style="margin-top:8px">Entre 2 y 4 minutos.</p>
+        </details>
+
+        <details>
+          <summary>¿Qué recibo exactamente?</summary>
+          <p class="small" style="margin-top:8px">Un rango orientativo, lectura de demanda, alineación de precio y una recomendación estratégica para salir al mercado.</p>
+        </details>
+
+        <details>
+          <summary>¿Quién me contacta?</summary>
+          <p class="small" style="margin-top:8px">Solo si das consentimiento. En ese caso, una inmobiliaria colaboradora puede contactarte para ampliar información.</p>
+        </details>
+      </section>
+    </div>
+
+    <div class="footer">
+      <div><strong>Vendabilidad™</strong></div>
+      <div class="powered">Powered by IEI™ — Índice de Evaluación Integral</div>
+      <div class="small" style="margin-top:8px">
+        Modelo determinista basado en reglas configurables. No constituye tasación homologada ni compromiso de precio final.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tracking mínimo (sin dependencias). Si ya tienes analytics en app.js, puedes conectar aquí.
+    (function(){
+      var cta = document.getElementById('cta-start');
+      if(cta){
+        cta.addEventListener('click', function(){
+          try { window.dispatchEvent(new CustomEvent('start_form')); } catch(e) {}
+        });
+      }
+      try { window.dispatchEvent(new CustomEvent('view_landing')); } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
