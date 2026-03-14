@@ -1,33 +1,33 @@
 :root {
-  --bg1: #F8FAFC;
-  --bg2: #EEF2FF;
-  --bg3: #ECFEFF;
+  --bg1: #FCF9F4;
+  --bg2: #F7F1EB;
+  --bg3: #E9F1F0;
   --card: rgba(255, 255, 255, 0.78);
-  --card-solid: #FFFFFF;
-  --text: #0F172A;
-  --muted: #334155;
-  --border: rgba(15, 23, 42, 0.10);
-  --cta: #0F766E;
-  --cta-2: #10B981;
-  --link: #2563EB;
+  --card-solid: #FFFDFB;
+  --text: #2B446F;
+  --muted: #5C6F88;
+  --border: rgba(43, 68, 111, 0.12);
+  --cta: #2B446F;
+  --cta-2: #42818C;
+  --link: #42818C;
   --warn: #b42318;
   --ok: #027a48;
-  --shadow: 0 10px 35px rgba(15, 23, 42, 0.10);
-  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
-  --radius: 22px;
+  --shadow: 0 18px 48px rgba(43, 68, 111, 0.12);
+  --shadow-soft: 0 14px 36px rgba(43, 68, 111, 0.08);
+  --radius: 24px;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
   color: var(--text);
-  line-height: 1.35;
+  line-height: 1.55;
   background:
-    radial-gradient(900px 500px at 10% 10%, var(--bg3), transparent 60%),
-    radial-gradient(900px 520px at 90% 0%, var(--bg2), transparent 55%),
-    radial-gradient(700px 420px at 80% 95%, #F0FDF4, transparent 55%),
+    radial-gradient(900px 500px at 10% 10%, rgba(170, 199, 203, 0.28), transparent 60%),
+    radial-gradient(900px 520px at 90% 0%, rgba(225, 177, 110, 0.22), transparent 55%),
+    radial-gradient(700px 420px at 80% 95%, rgba(125, 72, 125, 0.14), transparent 55%),
     linear-gradient(180deg, var(--bg1), #FFFFFF 55%);
   min-height: 100vh;
   isolation: isolate;
@@ -49,7 +49,7 @@ body::before {
   left: -120px;
   top: 24px;
   border-radius: 58% 42% 35% 65% / 55% 45% 55% 45%;
-  background: rgba(14, 165, 233, 0.22);
+  background: rgba(98, 172, 167, 0.24);
   animation: floaty-a 16s ease-in-out infinite;
 }
 
@@ -59,7 +59,7 @@ body::after {
   right: -140px;
   top: -50px;
   border-radius: 62% 38% 53% 47% / 46% 54% 46% 54%;
-  background: rgba(99, 102, 241, 0.18);
+  background: rgba(125, 72, 125, 0.16);
   animation: floaty-b 20s ease-in-out infinite;
 }
 
@@ -76,6 +76,13 @@ body::after {
 }
 
 a { color: inherit; }
+
+h1,
+h2,
+h3,
+.brand {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
 
 .container {
   width: min(1080px, 92vw);
@@ -137,8 +144,8 @@ header {
 h1 {
   margin: 0 0 10px;
   font-size: clamp(1.8rem, 3.3vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
 }
 
 h2 {
@@ -172,7 +179,7 @@ p {
   font-weight: 700;
   color: #fff;
   background: linear-gradient(135deg, var(--cta), var(--cta-2));
-  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.22);
+  box-shadow: 0 14px 28px rgba(43, 68, 111, 0.16);
   transition: transform .08s ease, filter .12s ease;
 }
 
@@ -188,7 +195,7 @@ p {
 .button.secondary {
   background: rgba(255, 255, 255, 0.60);
   color: var(--text);
-  border-color: rgba(15, 23, 42, 0.12);
+  border-color: rgba(43, 68, 111, 0.12);
   box-shadow: none;
 }
 

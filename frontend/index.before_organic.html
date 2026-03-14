@@ -5,75 +5,114 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vendabilidad™ — Informe de Vendabilidad (Powered by IEI™)</title>
   <meta name="description" content="Antes de vender, entiende tu posición real en el mercado. Informe orientativo de vendabilidad basado en el IEI™ — Índice de Evaluación Integral." />
+  <link rel="icon" type="image/png" href="assets/logo_nuevo.png" />
+  <meta name="theme-color" content="#2B446F" />
 
   <style>
     :root{
-      --bg:#F8FAFC;
-      --card:#FFFFFF;
-      --text:#0F172A;
-      --muted:#334155;
-      --border:#E2E8F0;
-      --cta:#065F46;
-      --cta2:#0B7A57;
-      --hero:#0F172A;
-      --heroText:#F8FAFC;
-      --shadow: 0 8px 30px rgba(15, 23, 42, 0.08);
-      --radius: 18px;
+      --bg:#FCF8F3;
+      --card:rgba(255,255,255,0.82);
+      --text:#2B446F;
+      --muted:#5C6F88;
+      --border:rgba(43,68,111,0.14);
+      --cta:#2B446F;
+      --cta2:#42818C;
+      --hero:rgba(255,255,255,0.78);
+      --heroText:#2B446F;
+      --shadow: 0 22px 60px rgba(43,68,111,0.12);
+      --radius: 28px;
       --max: 1040px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:var(--bg);
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(760px 480px at 12% 6%, rgba(170,199,203,0.34), transparent 60%),
+        radial-gradient(620px 420px at 90% 12%, rgba(225,177,110,0.24), transparent 58%),
+        radial-gradient(680px 420px at 78% 92%, rgba(125,72,125,0.16), transparent 56%),
+        linear-gradient(180deg, #FCF9F4 0%, var(--bg) 58%, #F7F1EB 100%);
       color:var(--text);
-      line-height:1.35;
+      line-height:1.62;
+      position:relative;
+      overflow-x:hidden;
+    }
+    body::before,
+    body::after{
+      content:"";
+      position:fixed;
+      pointer-events:none;
+      z-index:-1;
+    }
+    body::before{
+      inset:0;
+      opacity:0.14;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+    body::after{
+      width:520px;
+      height:520px;
+      right:-140px;
+      top:-80px;
+      opacity:0.72;
+      filter:blur(24px);
+      border-radius:58% 42% 48% 52% / 44% 56% 42% 58%;
+      background:
+        radial-gradient(circle at 24% 30%, rgba(98,172,167,0.32), transparent 48%),
+        radial-gradient(circle at 66% 30%, rgba(225,177,110,0.24), transparent 42%),
+        radial-gradient(circle at 48% 72%, rgba(125,72,125,0.2), transparent 40%);
     }
     a{color:inherit}
     .container{max-width:var(--max); margin:0 auto; padding:28px 18px}
     header{
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex; align-items:flex-start; justify-content:space-between;
       gap:16px;
-      padding:28px 0 68px 0;
+      padding:24px 0 30px 0;
     }
-    .brand-wrap{display:flex; flex-direction:column; gap:4px}
-    .brand{
-      font-weight:800;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
-      font-size:40px;
-    }
-    .brand .dot{color:var(--cta)}
-    .brand-sub{font-size:13px; color:var(--muted)}
+    .brand-wrap{display:flex; flex-direction:column; gap:10px; text-decoration:none}
+    .brand-logo{display:block; width:min(290px, 62vw); height:auto; filter:drop-shadow(0 14px 24px rgba(43,68,111,0.12))}
+    .brand-sub{font-size:12px; color:var(--muted); letter-spacing:0.14em; text-transform:uppercase}
     .nav a{
-      font-size:13px; color:var(--muted);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:10px 16px;
+      font-size:13px;
+      color:var(--text);
       text-decoration:none;
-      border-bottom:1px solid transparent;
-      padding-bottom:2px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(255,255,255,0.62);
+      box-shadow:0 8px 22px rgba(43,68,111,0.06);
     }
-    .nav a:hover{border-bottom-color:var(--border)}
+    .nav a:hover{border-color:rgba(98,172,167,0.34); color:var(--cta2)}
     .card{
       background:var(--card);
-      border:1px solid var(--border);
+      border:1px solid rgba(255,255,255,0.68);
       border-radius:var(--radius);
       box-shadow: var(--shadow);
       padding:22px;
     }
     .hero{
-      background:var(--hero);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.86), rgba(255,255,255,0.74)),
+        radial-gradient(circle at top left, rgba(170,199,203,0.22), transparent 40%),
+        radial-gradient(circle at 84% 18%, rgba(225,177,110,0.18), transparent 34%);
       color:var(--heroText);
-      border:1px solid rgba(248,250,252,0.12);
-      padding:34px 26px;
+      border:1px solid rgba(255,255,255,0.72);
+      padding:38px 32px;
     }
     .hero h1{
       margin:0 0 10px 0;
-      font-size:36px;
-      line-height:1.08;
-      letter-spacing:-0.02em;
+      font-family:"Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      font-size:42px;
+      line-height:1.02;
+      letter-spacing:-0.04em;
     }
     .lead{
       margin:0 0 18px 0;
-      color:rgba(248,250,252,0.88);
+      color:var(--muted);
       font-size:16px;
       max-width:70ch;
     }
@@ -85,12 +124,12 @@
       padding:0;
     }
     .hero-points div{
-      background: rgba(248,250,252,0.06);
-      border:1px solid rgba(248,250,252,0.10);
+      background: rgba(255,255,255,0.74);
+      border:1px solid rgba(98,172,167,0.18);
       border-radius:14px;
       padding:10px 12px;
       font-size:13px;
-      color:rgba(248,250,252,0.92);
+      color:var(--text);
     }
     .cta-row{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
     .button{
@@ -106,19 +145,20 @@
     }
     .button:active{transform: translateY(1px)}
     .button-premium{
-      background:var(--cta);
+      background:linear-gradient(135deg, var(--cta), var(--cta2));
       color:#fff;
+      box-shadow:0 18px 32px rgba(43,68,111,0.16);
     }
     .button-premium:hover{filter:brightness(1.03)}
     .button-ghost{
-      background:transparent;
-      color:rgba(248,250,252,0.92);
-      border-color: rgba(248,250,252,0.18);
+      background:rgba(255,255,255,0.72);
+      color:var(--text);
+      border-color: var(--border);
     }
     .micro-note{
       margin:10px 0 0 0;
       font-size:12px;
-      color:rgba(248,250,252,0.72);
+      color:var(--muted);
     }
 
     .grid{
@@ -162,6 +202,7 @@
       text-align:center;
       padding:22px 10px 10px 10px;
       color:var(--muted);
+      border-top:1px solid var(--border);
     }
     .footer strong{color:var(--text)}
     .powered{font-size:12px; color:var(--muted)}
@@ -178,10 +219,12 @@
 <body>
   <div class="container">
     <header>
-      <div class="brand-wrap">
-        <div class="brand">VENDABILIDAD<span class="dot">.</span></div>
-      </div>
+      <a class="brand-wrap" href="index.html" aria-label="Vendabilidad">
+        <img class="brand-logo" src="assets/logo_nuevo.png" alt="Vendabilidad — Índice de Evaluación Integral" />
+        <div class="brand-sub">Informe IEI™ · Índice de Evaluación Integral</div>
+      </a>
       <nav class="nav">
+        <a href="#que-es-iei">¿Qué es?</a>
       </nav>
     </header>
 

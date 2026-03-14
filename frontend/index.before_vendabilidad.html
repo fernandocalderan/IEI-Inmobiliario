@@ -6,33 +6,40 @@
   <title>Vendabilidad™ | Informe IEI™</title>
   <meta name="description" content="Informe de Vendabilidad™ orientativo para entender precio, demanda e intención antes de vender." />
   <link rel="stylesheet" href="assets/app.css" />
+  <link rel="icon" type="image/png" href="assets/logo_nuevo.png" />
+  <meta name="theme-color" content="#2B446F" />
   <style>
     :root {
-      --vd-bg: #F8FAFC;
-      --vd-text: #0F172A;
-      --vd-muted: #334155;
-      --vd-cta: #065F46;
-      --vd-cta-hover: #064E3B;
-      --vd-line: #E2E8F0;
-      --vd-card: #FFFFFF;
-      --vd-hero: #0F172A;
-      --vd-hero-text: #E2E8F0;
-      --vd-hero-muted: #CBD5E1;
+      --vd-bg: #FCF8F3;
+      --vd-text: #2B446F;
+      --vd-muted: #5C6F88;
+      --vd-cta: #2B446F;
+      --vd-cta-hover: #243B61;
+      --vd-cta-2: #42818C;
+      --vd-line: rgba(43, 68, 111, 0.14);
+      --vd-card: rgba(255, 255, 255, 0.82);
+      --vd-hero: rgba(255, 255, 255, 0.76);
+      --vd-hero-text: #2B446F;
+      --vd-hero-muted: #5C6F88;
     }
 
     body[data-page="landing"] {
-      background: var(--vd-bg);
+      background:
+        radial-gradient(760px 480px at 12% 6%, rgba(170, 199, 203, 0.34), transparent 60%),
+        radial-gradient(620px 420px at 90% 12%, rgba(225, 177, 110, 0.24), transparent 58%),
+        radial-gradient(680px 420px at 78% 92%, rgba(125, 72, 125, 0.16), transparent 56%),
+        linear-gradient(180deg, #FCF9F4 0%, var(--vd-bg) 58%, #F7F1EB 100%);
       color: var(--vd-text);
     }
 
     body[data-page="landing"] header {
       margin-bottom: 0;
       border-bottom: 1px solid var(--vd-line);
-      background: rgba(248, 250, 252, 0.94);
+      background: rgba(255, 255, 255, 0.72);
       position: sticky;
       top: 0;
       z-index: 20;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
     }
 
     .landing-topbar {
@@ -47,24 +54,26 @@
       min-width: 0;
     }
 
-    .brand-wordmark {
-      margin: 0;
-      color: var(--vd-text);
-      font-size: clamp(1.2rem, 1.8vw, 1.55rem);
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      line-height: 1.1;
+    .brand-block a {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
     }
 
-    .brand-wordmark .dot {
-      color: var(--vd-cta);
+    .brand-logo {
+      display: block;
+      width: min(290px, 58vw);
+      height: auto;
+      filter: drop-shadow(0 14px 24px rgba(43, 68, 111, 0.12));
     }
 
     .brand-subtitle {
-      margin: 3px 0 0;
+      margin: 0;
       color: var(--vd-muted);
-      font-size: 0.88rem;
+      font-size: 0.77rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .top-actions {
@@ -76,30 +85,43 @@
 
     .micro-link {
       color: var(--vd-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 10px 16px;
       text-decoration: none;
       font-weight: 600;
-      border-bottom: 1px solid transparent;
+      border: 1px solid var(--vd-line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 8px 22px rgba(43, 68, 111, 0.06);
     }
 
     .micro-link:hover {
-      border-bottom-color: var(--vd-text);
+      color: var(--vd-cta-2);
+      border-color: rgba(98, 172, 167, 0.34);
     }
 
     .premium-hero {
       margin-top: 26px;
-      border-radius: 20px;
-      background: var(--vd-hero);
+      border-radius: 30px;
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.74)),
+        radial-gradient(circle at top left, rgba(170, 199, 203, 0.22), transparent 40%),
+        radial-gradient(circle at 84% 18%, rgba(225, 177, 110, 0.18), transparent 34%);
       color: var(--vd-hero-text);
-      border: 1px solid rgba(203, 213, 225, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.74);
       padding: clamp(28px, 5vw, 62px);
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14);
+      box-shadow: 0 22px 60px rgba(43, 68, 111, 0.12);
     }
 
     .premium-hero h1 {
       margin: 0 0 14px;
       max-width: 16ch;
-      line-height: 1.12;
-      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1.02;
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      letter-spacing: -0.04em;
     }
 
     .premium-hero .hero-copy {
@@ -120,10 +142,11 @@
     }
 
     body[data-page="landing"] .button {
-      background: var(--vd-cta);
-      border-radius: 12px;
+      background: linear-gradient(135deg, var(--vd-cta), var(--vd-cta-2));
+      border-radius: 999px;
       padding: 12px 20px;
       font-weight: 700;
+      box-shadow: 0 18px 32px rgba(43, 68, 111, 0.16);
     }
 
     body[data-page="landing"] .button:hover {
@@ -142,11 +165,11 @@
 
     .section-card {
       background: var(--vd-card);
-      border: 1px solid var(--vd-line);
-      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 24px;
       padding: clamp(18px, 2.8vw, 30px);
       margin-top: 18px;
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 16px 38px rgba(43, 68, 111, 0.08);
     }
 
     .section-card h2 {
@@ -288,8 +311,10 @@
   <header>
     <div class="container landing-topbar">
       <div class="brand-block">
-        <p class="brand-wordmark">VENDABILIDAD<span class="dot">.</span></p>
-        <p class="brand-subtitle">Vendabilidad™ · Informe IEI™ — Índice de Evaluación Integral</p>
+        <a href="index.html" aria-label="Vendabilidad">
+          <img class="brand-logo" src="assets/logo_nuevo.png" alt="Vendabilidad — Índice de Evaluación Integral" />
+          <p class="brand-subtitle">Vendabilidad™ · Informe IEI™ — Índice de Evaluación Integral</p>
+        </a>
       </div>
       <div class="top-actions">
         <a class="micro-link" href="#que-es-iei">¿Qué es?</a>
